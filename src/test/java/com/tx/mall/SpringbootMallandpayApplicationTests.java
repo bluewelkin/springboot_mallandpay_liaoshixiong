@@ -19,8 +19,8 @@ public class SpringbootMallandpayApplicationTests {
     @Test
     public void contextLoads() {
 
-        Category category = categoryMapper.findById(100006);
-        System.out.println(category.toString());
+//        Category category = categoryMapper.findById(100006);
+//        System.out.println(category.toString());
     }
 
 }

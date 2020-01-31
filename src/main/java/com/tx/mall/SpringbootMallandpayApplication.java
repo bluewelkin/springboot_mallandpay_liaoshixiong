@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 //@MapperScan(basePackages = "com.imooc.mall.dao")
+@MapperScan(basePackages = "com.tx.mall.dao")
 public class SpringbootMallandpayApplication {
 
     public static void main(String[] args) {

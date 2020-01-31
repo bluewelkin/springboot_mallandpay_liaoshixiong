@@ -23,6 +23,14 @@ public class User {
 
     private Date updateTime;
 
+    public User(String username, String password, String email, Integer code) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+
+    }
+
     public Integer getId() {
         return id;
     }
