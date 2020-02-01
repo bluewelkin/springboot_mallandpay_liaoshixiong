@@ -1,6 +1,7 @@
 package com.tx.mall.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.tx.mall.enums.ResponseEnum;
 import lombok.Data;
 
 @Data
@@ -21,4 +22,12 @@ public class ResponseVo<T> {
         return  new ResponseVo<>(0,msg);
 
     }
+    public static  <T> ResponseVo<T> success() {
+        return  new ResponseVo<>(ResponseEnum.SUCCESS.getCode(),ResponseEnum.SUCCESS.getDesc());
+    }
+
+    public static  <T> ResponseVo<T> error(ResponseEnum responseEnum) {
+        return  new ResponseVo<>(responseEnum.getCode(),responseEnum.getDesc());
+    }
+
 }
