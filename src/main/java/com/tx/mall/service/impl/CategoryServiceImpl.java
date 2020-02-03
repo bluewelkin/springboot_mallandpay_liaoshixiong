@@ -34,13 +34,37 @@ public class CategoryServiceImpl  implements ICategoryService {
             }
 
         }
-//		for (Category category : categories) {
-//			if (category.getParentId().equals(ROOT_PARENT_ID)) {
-//				CategoryVo categoryVo = new CategoryVo();
-//				BeanUtils.copyProperties(category, categoryVo);
-//				categoryVoList.add(categoryVo);
-//			}
-//		}
+
+        //查询子目录
+
+
+        findSubCategory(categoryVoList,categories);
+
+
       return   ResponseVo.success(categoryVoList);
     }
+    private void findSubCategory(List<CategoryVo> categoryVoList,List<Category> categories){
+        for (CategoryVo categoryVo : categoryVoList) {
+            List<CategoryVo> subCategoryVoList = new ArrayList<>();
+            for(Category category : categories){
+                //如果查到内容，要设置子目录，还要继续往下查
+                if(categoryVo.getId().equals(category.getParentId())){
+                    CategoryVo subCategoryVo = category2CategoryVo(category);
+
+                    subCategoryVoList.add(subCategoryVo);
+                }
+            }
+            categoryVo.setSubCategories(subCategoryVoList);
+
+        }
+
+    }
+
+    private CategoryVo category2CategoryVo(Category category) {
+        CategoryVo categoryVo = new CategoryVo();
+        BeanUtils.copyProperties(category, categoryVo);
+        return categoryVo;
+    }
+
+
 }
