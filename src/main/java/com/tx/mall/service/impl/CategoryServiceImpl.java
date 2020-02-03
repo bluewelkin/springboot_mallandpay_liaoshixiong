@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import static com.tx.mall.consts.MallConst.ROOT_PARENT_ID;
@@ -30,12 +31,13 @@ public class CategoryServiceImpl  implements ICategoryService {
                 CategoryVo categoryVo =new CategoryVo();
                 BeanUtils.copyProperties(category,categoryVo);
                 categoryVoList.add(categoryVo);
-
             }
 
         }
 
         //查询子目录
+
+        categoryVoList.sort(Comparator.comparing(CategoryVo::getSortOrder).reversed());
 
 
         findSubCategory(categoryVoList,categories);
@@ -54,6 +56,7 @@ public class CategoryServiceImpl  implements ICategoryService {
                     subCategoryVoList.add(subCategoryVo);
                 }
             }
+            subCategoryVoList.sort(Comparator.comparing(CategoryVo::getSortOrder).reversed());
             categoryVo.setSubCategories(subCategoryVoList);
             //多级目录及递归
             findSubCategory(subCategoryVoList,categories);
