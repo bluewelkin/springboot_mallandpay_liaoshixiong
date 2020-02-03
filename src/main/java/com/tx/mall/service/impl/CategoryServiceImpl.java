@@ -55,6 +55,8 @@ public class CategoryServiceImpl  implements ICategoryService {
                 }
             }
             categoryVo.setSubCategories(subCategoryVoList);
+            //多级目录及递归
+            findSubCategory(subCategoryVoList,categories);
 
         }
 
