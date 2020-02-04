@@ -1,6 +1,8 @@
 package com.tx.mall.service.impl;
 
 import com.fasterxml.jackson.databind.util.BeanUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tx.mall.dao.ProductMapper;
 import com.tx.mall.pojo.Product;
 import com.tx.mall.service.ICategoryService;
@@ -27,7 +29,7 @@ public class ProductServiceImpl implements IProductService {
     private ProductMapper productMapper;
 
     @Override
-    public ResponseVo<List<ProductVo>> list(Integer categoryId, Integer pageNum, Integer pageSize) {
+    public ResponseVo<PageInfo> list(Integer categoryId, Integer pageNum, Integer pageSize) {
         Set<Integer> categoryIdSet = new HashSet<>();
 
 
@@ -35,6 +37,7 @@ public class ProductServiceImpl implements IProductService {
             categoryService.findSubCategoryId(categoryId,categoryIdSet);
             categoryIdSet.add(categoryId);
         }
+        PageHelper.startPage(pageNum,pageSize);
 
         List<ProductVo> productVoList = productMapper.selectByCategoryIdSet(categoryIdSet).stream()
                 .map(e -> {
@@ -43,8 +46,10 @@ public class ProductServiceImpl implements IProductService {
                             return productVo;
                         }
                 ).collect(Collectors.toList());
-        log.info("product={}",productVoList);
-        return ResponseVo.success(productVoList);
+
+        PageInfo pageInfo = new PageInfo<>(productVoList);
+        pageInfo.setList(productVoList);
+        return ResponseVo.success(pageInfo);
     }
 }
 
