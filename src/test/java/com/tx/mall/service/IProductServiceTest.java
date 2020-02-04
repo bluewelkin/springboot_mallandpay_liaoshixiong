@@ -3,6 +3,7 @@ package com.tx.mall.service;
 import com.github.pagehelper.PageInfo;
 import com.tx.mall.MallApplicationTests;
 import com.tx.mall.enums.ResponseEnum;
+import com.tx.mall.vo.ProductDetailVo;
 import com.tx.mall.vo.ResponseVo;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,6 +17,11 @@ public class IProductServiceTest extends MallApplicationTests {
     public void list() {
         ResponseVo<PageInfo> responseVo = productService.list(null, 1, 1);
 
+        Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
+    }
+    @Test
+    public void detail() {
+        ResponseVo<ProductDetailVo> responseVo = productService.detail(26);
         Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
     }
 }
