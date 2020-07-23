@@ -3,7 +3,7 @@ package com.tx.mall.enums;
 import lombok.Getter;
 
 /**
- * Created by 廖师兄
+ * Created by bluewelkin
  */
 @Getter
 public enum ResponseEnum {

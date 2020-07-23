@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
 <!--    windows下路径, D:\downloads\xxx.jar-->
-    <classPathEntry location="E:\maven\repository\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar" />
+    <classPathEntry location="E:\maven\repository\mysql\mysql-connector-java\5.1.27\mysql-connector-java-5.1.27.jar" />
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
 

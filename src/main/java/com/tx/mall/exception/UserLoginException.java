@@ -1,7 +1,7 @@
 package com.tx.mall.exception;
 
 /**
- * Created by 廖师兄
+ * Created by bluewelkin
  */
 public class UserLoginException extends RuntimeException {
 }
